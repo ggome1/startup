@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -37,14 +36,6 @@ export default function Login() {
             placeholder="이메일"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            className="login-input"
-            placeholder="비밀번호"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             required
           />
           <button type="submit" className="login-btn">로그인</button>

@@ -31,12 +31,14 @@ export function BusinessRecommendation() {
     name: business.business_category,
     match: `${Math.floor(85 + Math.random() * 15)}% 일치`,
     description: business.business_description,
-    image: `https://source.unsplash.com/random/800x600/?business,${business.business_category.replace(/\s+/g, '')}`,
+    mbti: business.mbti_type,
     stats: {
       growth: `↑ ${Math.floor(10 + Math.random() * 15)}%`,
       competition: ["낮음", "중간", "높음"][Math.floor(Math.random() * 3)],
-      investment: ["낮음", "중간", "높음", "중간-높음"][Math.floor(Math.random() * 4)]
-    }
+      investment: ["낮음", "중간", "높음", "중간-높음"][
+        Math.floor(Math.random() * 4)
+      ],
+    },
   }));
 
   return (
@@ -49,19 +51,30 @@ export function BusinessRecommendation() {
       </div>
 
       <div className="mbti-result">
-        <div className="mbti-type">{mbti || "결과 로딩 중..."}</div>
+        <div className="mbti-type">
+          {businessRecommendations.length > 0
+            ? businessRecommendations[0].mbti
+            : "결과 로딩 중..."}
+        </div>
         <p className="mbti-description">
-          {mbti ? `${mbti} 유형에 맞는 비즈니스 추천 결과입니다. 당신의 성격 유형에 가장 적합한 비즈니스 카테고리를 확인해보세요.` : "MBTI 결과를 불러오는 중입니다..."}
+          {mbti ? (
+            <>
+              {mbti} 유형에 맞는 비즈니스 추천 결과입니다.
+              <br /> 당신의 성격 유형에 가장 적합한 비즈니스 카테고리를
+              확인해보세요.
+            </>
+          ) : (
+            "MBTI 결과를 불러오는 중입니다..."
+          )}
         </p>
       </div>
 
       <h2 className="text-center mb-3">추천 비즈니스</h2>
-      
+
       <div className="business-recommendations">
         {businessRecommendations.length > 0 ? (
           businessRecommendations.map((business) => (
             <div key={business.id} className="business-card">
-              <img src={business.image} alt={business.name} className="business-image" />
               <div className="business-content">
                 <h3 className="business-name">{business.name}</h3>
                 <span className="business-match">{business.match}</span>
@@ -72,11 +85,15 @@ export function BusinessRecommendation() {
                     <span className="stat-label">성장률</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-value">{business.stats.competition}</span>
+                    <span className="stat-value">
+                      {business.stats.competition}
+                    </span>
                     <span className="stat-label">경쟁도</span>
                   </div>
                   <div className="stat-item">
-                    <span className="stat-value">{business.stats.investment}</span>
+                    <span className="stat-value">
+                      {business.stats.investment}
+                    </span>
                     <span className="stat-label">초기 투자</span>
                   </div>
                 </div>

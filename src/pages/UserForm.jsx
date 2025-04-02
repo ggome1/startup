@@ -6,8 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 export default function UserForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); // 비밀번호 필드 추가 (UI용)
-  const [confirmPassword, setConfirmPassword] = useState(""); // 비밀번호 확인 필드 추가 (UI용)
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -47,26 +45,6 @@ export default function UserForm() {
               className="signup-input"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label className="signup-label">비밀번호</label>
-            <input
-              type="password"
-              className="signup-input"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label className="signup-label">비밀번호 확인</label>
-            <input
-              type="password"
-              className="signup-input"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
               required
             />
           </div>
